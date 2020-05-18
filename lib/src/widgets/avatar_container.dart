@@ -1,7 +1,6 @@
 part of mfchat;
 
 class AvatarContainer extends StatelessWidget {
-
   final ChatUser user;
   final Function(ChatUser) onPress;
   final Function(ChatUser) onLongPress;
@@ -47,6 +46,7 @@ class AvatarContainer extends StatelessWidget {
                           child: FadeInImage.memoryNetwork(
                             image: user.avatar,
                             fit: BoxFit.cover,
+                            placeholder: kTransparentImage,
                             height: constraints.maxWidth * 0.08,
                             width: constraints.maxWidth * 0.08,
                           ),

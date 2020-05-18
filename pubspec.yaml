@@ -2,7 +2,7 @@ name: mfchat
 description: A new Flutter package which helps devloper in creating chat of their app
 version: 0.0.1
 author: MobileFirst
-homepage:
+homepage: https://github.com/YashMobileFirst/mf_chat
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -13,6 +13,8 @@ dependencies:
   uuid: ^2.0.1
   intl: ^0.16.0
   flutter_parsed_text: ^1.1.0
+  transparent_image: ^1.0.0
+
 
 dev_dependencies:
   flutter_test:
