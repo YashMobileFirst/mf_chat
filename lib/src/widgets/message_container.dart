@@ -22,11 +22,7 @@ class MessageContainer extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: message.user.containerColor != null
-              ? message.user.containerColor
-              : isUser
-                  ? Theme.of(context).accentColor
-                  : Color.fromRGBO(225, 225, 225, 1),
+          color: Color.fromRGBO(225, 225, 225, 1),
           borderRadius: BorderRadius.circular(5.0),
         ),
         margin: EdgeInsets.only(
@@ -36,7 +32,16 @@ class MessageContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            messageTextBuilder(message.text, message),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                message.text,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              ),
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment:

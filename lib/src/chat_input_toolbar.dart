@@ -1,22 +1,28 @@
 part of mfchat;
 
-class ChatInputToolbar extends StatelessWidget {
+class ChatInputToolbar extends StatefulWidget {
   final ChatUser user;
   final Function(ChatMessage) onSend;
-  final String text;
 
   ChatInputToolbar({
     Key key,
-    this.text,
     this.onSend,
     @required this.user,
   }) : super(key: key);
 
   @override
+  _ChatInputToolbarState createState() => _ChatInputToolbarState();
+}
+
+class _ChatInputToolbarState extends State<ChatInputToolbar> {
+  TextEditingController _controller = TextEditingController();
+  String text = "";
+
+  @override
   Widget build(BuildContext context) {
     ChatMessage message = ChatMessage(
       text: text,
-      user: user,
+      user: widget.user,
       createdAt: DateTime.now(),
     );
 
@@ -31,7 +37,20 @@ class ChatInputToolbar extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration.collapsed(
+                      hintText: "Type a Message here..",
+                      fillColor: Colors.white,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        text = value.toString();
+                      });
+                    },
                     onSubmitted: (value) {
+                      setState(() {
+                        text = value.toString();
+                      });
                       _sendMessage(context, message);
                     },
                     buildCounter: (
@@ -46,8 +65,10 @@ class ChatInputToolbar extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.send),
-                onPressed: text.length != 0
-                    ? () => _sendMessage(context, message)
+                onPressed: text.isNotEmpty
+                    ? () {
+                        _sendMessage(context, message);
+                      }
                     : null,
               ),
             ],
@@ -58,8 +79,10 @@ class ChatInputToolbar extends StatelessWidget {
   }
 
   void _sendMessage(BuildContext context, ChatMessage message) async {
+    _controller.clear();
+
     if (text.length != 0) {
-      await onSend(message);
+      await widget.onSend(message);
     }
   }
 }

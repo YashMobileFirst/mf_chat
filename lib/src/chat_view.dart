@@ -12,8 +12,8 @@ class MFChat extends StatefulWidget {
     Key key,
     @required this.messages,
     this.text,
-    @required this.user,
-    @required this.onSend,
+    this.user,
+    this.onSend,
     this.messageBuilder,
     this.messageTextBuilder,
   }) : super(key: key);
@@ -37,6 +37,7 @@ class _MFChatState extends State<MFChat> {
 
   @override
   Widget build(BuildContext context) {
+
     return LayoutBuilder(builder: (context, constraints) {
       final maxWidth = constraints.maxWidth == double.infinity
           ? MediaQuery.of(context).size.width
@@ -60,7 +61,6 @@ class _MFChatState extends State<MFChat> {
             ChatInputToolbar(
               onSend: widget.onSend,
               user: widget.user,
-              text: widget.text != null ? widget.text : _text,
             )
           ],
         ),

@@ -3,6 +3,7 @@ library mfchat;
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:uuid/uuid.dart';
 
 export 'package:intl/intl.dart' hide TextDirection;
